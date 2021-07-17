@@ -17,7 +17,8 @@ build(){
 }
 
 makelib(){
-    mkdir -p openssl/lib
+    mkdir lib
+    make include
     outfiles=(libssl.a libcrypto.a)
     for j in ${!outfiles[@]}
     do
@@ -26,9 +27,9 @@ makelib(){
         do
             new[i]=./openssl_${platforms[$i]}/lib/${outfiles[$j]}
         done
-        lipo -create ${new[@]} -output openssl/lib/${outfiles[$j]}
+        lipo -create ${new[@]} -output ./lib/${outfiles[$j]}
     done
-    cp -R ./openssl_${platforms[0]}/include openssl/
+    cp -R ./openssl_${platforms[0]}/include ./
 }
 buildAll(){
     cd openssl*
@@ -80,8 +81,8 @@ frameworksim(){
 #     lipo -create ${new[@]} -output openssl/lib/libopenssl.a
 #     cp -R ./openssl_${platforms[0]}/include openssl/
 # }
-download
-buildAll
+#download
+#buildAll
 # framework
 makelib
 # frameworksim
