@@ -81,8 +81,8 @@ frameworksim(){
 #     lipo -create ${new[@]} -output openssl/lib/libopenssl.a
 #     cp -R ./openssl_${platforms[0]}/include openssl/
 # }
-#download
-#buildAll
+download
+buildAll
 # framework
 makelib
 # frameworksim
